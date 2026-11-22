@@ -105,51 +105,34 @@ Smart-Server-Health-Diagnostics/
 
 
 
-### **Automated Testing**
+## Automated Testing
 
+Automated unit tests are included to verify AI fallback handling and system health status classification.
 
+### Test Scenarios
 
-Automated unit tests are included to verify AI fallback handling.
+**AI Diagnostic Tests**
+- Missing API key
+- Invalid API key
+- API request timeout
+- Invalid AI response
 
+**Metrics Classification Tests**
+- Healthy status
+- Warning status
+- Critical status
 
-
-Test Scenarios
-
-
-
-\- Missing API key
-
-\- Invalid API key
-
-\- API request timeout
-
-\- Invalid AI response
-
-
-
-Run Tests
-
-
+### Run Tests
 
 Run this command from the project root directory:
 
-
-
+```bash
 python -m unittest discover -s tests -v
+```
 
+### Test Results
 
-
-Test Results
-
-
-
-All 4 automated fallback tests passed successfully.
-
-## 
-
-## 
-
-## 
+All 7 automated tests passed successfully.
 
 ## Notes
 
