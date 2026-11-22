@@ -4,16 +4,16 @@ A small Python REST API that checks the local computer's CPU, memory, and disk u
 
 ## Requirements
 
-- Python 3.9 or newer
-- Internet connection for Groq AI analysis
-- A Groq API key (optional; the API still works without it using a fallback message)
+* Python 3.9 or newer
+* Internet connection for Groq AI analysis
+* A Groq API key (optional; the API still works without it using a fallback message)
 
-## 1. Open the project
+## 1\. Open the project
 
 Open this folder in VS Code:
 `Smart-Server-Health-Diagnostics`
 
-## 2. Install dependencies
+## 2\. Install dependencies
 
 Open the VS Code terminal in this folder and run:
 
@@ -21,17 +21,17 @@ Open the VS Code terminal in this folder and run:
 python -m pip install -r requirements.txt
 ```
 
-## 3. Configure the Groq API key (optional)
+## 3\. Configure the Groq API key (optional)
 
 1. Make a copy of `.env.example`.
 2. Rename the copy to `.env`.
-3. Replace `your_groq_api_key_here` with your Groq API key.
+3. Replace `your\\\_groq\\\_api\\\_key\\\_here` with your Groq API key.
 
 The real `.env` file is ignored by Git. Never publish your API key.
 
 If you do not add a key, the endpoint still works and returns a clear fallback AI message.
 
-## 4. Start the API
+## 4\. Start the API
 
 In the VS Code terminal, run:
 
@@ -41,7 +41,7 @@ python -m uvicorn app.main:app --reload
 
 Or on Windows, double-click `run.bat`.
 
-## 5. Test the endpoint
+## 5\. Test the endpoint
 
 Open this URL in your browser:
 
@@ -60,11 +60,11 @@ The percentages and timestamp below are examples. Your actual values will depend
   "timestamp": "2026-11-21T16:30:00Z",
   "status": "WARNING",
   "metrics": {
-    "cpu_percent": 76.5,
-    "memory_percent": 68.2,
-    "disk_percent": 54.0
+    "cpu\\\_percent": 76.5,
+    "memory\\\_percent": 68.2,
+    "disk\\\_percent": 54.0
   },
-  "ai_analysis": {
+  "ai\\\_analysis": {
     "summary": "CPU usage is elevated, while memory and disk usage are within normal limits.",
     "recommendation": "Check for background applications that may be using significant CPU resources."
   }
@@ -77,9 +77,9 @@ The percentages and timestamp below are examples. Your actual values will depend
 Smart-Server-Health-Diagnostics/
 │
 ├── app/
-│   ├── __init__.py
+│   ├── \\\_\\\_init\\\_\\\_.py
 │   ├── metrics.py
-│   ├── ai_diagnostics.py
+│   ├── ai\\\_diagnostics.py
 │   └── main.py
 │
 ├── .env.example
@@ -93,17 +93,67 @@ Smart-Server-Health-Diagnostics/
 
 1. `metrics.py` reads CPU, memory, and disk usage using `psutil`.
 2. `metrics.py` classifies the overall status:
-   - Above 85%: `CRITICAL`
-   - Above 70%: `WARNING`
-   - Otherwise: `HEALTHY`
-3. `ai_diagnostics.py` sends the metrics and status to Groq and requests a JSON summary and recommendation.
+
+   * Above 85%: `CRITICAL`
+   * Above 70%: `WARNING`
+   * Otherwise: `HEALTHY`
+3. `ai\\\_diagnostics.py` sends the metrics and status to Groq and requests a JSON summary and recommendation.
 4. If the API key is missing or the AI request fails, a fallback message is returned instead of crashing.
 5. `main.py` exposes the `GET /api/health-report` endpoint using FastAPI.
 
+
+
+
+
+### **Automated Testing**
+
+
+
+Automated unit tests are included to verify AI fallback handling.
+
+
+
+Test Scenarios
+
+
+
+\- Missing API key
+
+\- Invalid API key
+
+\- API request timeout
+
+\- Invalid AI response
+
+
+
+Run Tests
+
+
+
+Run this command from the project root directory:
+
+
+
+python -m unittest discover -s tests -v
+
+
+
+Test Results
+
+
+
+All 4 automated fallback tests passed successfully.
+
+## 
+
+## 
+
+## 
+
 ## Notes
 
-- No database, Docker, Redis, or frontend is required.
-- The disk usage is checked for the current system drive on Windows and the root filesystem on other operating systems.
-- The AI integration requires a valid Groq API key and internet access.
-
+* No database, Docker, Redis, or frontend is required.
+* The disk usage is checked for the current system drive on Windows and the root filesystem on other operating systems.
+* The AI integration requires a valid Groq API key and internet access.
 
